@@ -1,0 +1,265 @@
+#!/bin/sh
+#################################################################
+# A shell script to turn off and on all the computerss. 
+# Nuruzzaman <nur@fnal.gov>, Date Created: 05/12/2017
+# 
+# Please change the modification date while changing the script.
+#################################################################
+LAST_MODIFIED="05/13/2017"
+
+# Define color and theme for terminal
+black='\033[30m'
+red='\033[31m'
+green='\033[32m'
+yellow='\033[33m'
+blue='\033[34m'
+magenta='\033[35m'
+cyan='\033[36m'
+white='\033[37m'
+reset='\033[39m'
+bold='\033[1m'
+italic='\033[3m'
+underline='\033[4m'
+blinking='\x1b[5m'
+inverted='\x1b[7m' ## \x1b ~ \033 
+normal='\033[0m'
+
+if [ -n "$MINERVA_RELEASE" ]; then
+    softrel=${MINERVA_RELEASE}
+else
+    softrel=v10r9p1
+fi
+
+declare -a EMAIL_EXPERT=( "minerva-ops-logs@fnal.gov"
+#                          "minerva-ops@fnal.gov"
+)
+EXPERT='Nuruzzaman <nur@fnal.gov>'
+CONNECTED=$(whoami)@$(hostname)
+nullVariable=""
+LOGFILE="logfile_shutdown.txt"
+
+#COMMAND="ls -ltr;"
+COMMAND="shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION!"
+#COMMAND="shutdown -c"
+#COMMAND="reboot"
+
+## Timeout functions 
+timecount_sec(){
+	secs=$((20))
+	while [ $secs -gt 0 ]; do
+#   		echo -e "$secs\033[0K\r"
+		if [ $secs -lt 11 ]; then
+		    echo -e "${green}$secs\033[0K\r${normal}"
+		else
+    		    echo -n "$secs "
+		fi
+   		sleep 1
+   		: $((secs--))
+	done
+}
+
+## Computer arrays 
+declare -a MINERVA_UNDERGROUND=( 
+				"root@mnvonline04.fnal.gov"
+				"root@mnvonline05.fnal.gov"
+				"root@mnvonline06.fnal.gov"
+				"root@mnvonline0.fnal.gov"
+				"root@mnvonlinemaster.fnal.gov"
+				"root@mnvonlinelogger4.fnal.gov"
+				"root@mnvonlinelogger6.fnal.gov"
+)
+arraylengthMINERVA_UNDERGROUND=${#MINERVA_UNDERGROUND[@]}
+
+declare -a MINOS_UNDERGROUND=( 
+				"root@minos-daq20-nd.fnal.gov"
+				"root@minos-daq22-nd.fnal.gov"
+				"root@minos-daq24-nd.fnal.gov"
+				"root@minos-daq26-nd.fnal.gov"
+				"root@minos-daq08-nd.fnal.gov"
+#				"root@minos-daq09-nd.fnal.gov"
+)
+arraylengthMINOS_UNDERGROUND=${#MINOS_UNDERGROUND[@]}
+
+declare -a MINOS_GATEWAY=( 
+				"root@minos-gateway00-nd.fnal.gov"
+				"root@minos-gateway01-nd.fnal.gov"
+)
+arraylengthMINOS_GATEWAY=${#MINOS_GATEWAY[@]}
+
+declare -a CR=( 
+				"root@minos-cr-03.fnal.gov"
+				"root@minos-evd.fnal.gov"
+				"root@minerva-cr-01.fnal.gov"
+				"root@minerva-cr-02.fnal.gov"
+				"root@minerva-cr-03.fnal.gov"
+)
+arraylengthCR=${#CR[@]}
+
+declare -a LABF=( 
+				"root@mnvtb03.fnal.gov"
+				"root@mnvtb04.fnal.gov"
+#				"root@mnvonline07.fnal.gov"
+#				"root@mnvonline08.fnal.gov"
+#				"root@mnvdaqts-01.fnal.gov"
+#				"root@mnvdaqts-02.fnal.gov"
+#				"root@mnvdaqts-03.fnal.gov"
+)
+arraylengthLABF=${#LABF[@]}
+
+
+## Prompt wraning message function
+warning_function() {
+
+echo -e "************************************************************************"
+echo -e "*                                                                      *"
+echo -e "*       ***  WARNING: This will power down operations PCs! ***         *"
+echo -e "*                                                                      *"
+echo -e "*   It must ONLY be used by DAQ experts when a controlled power-down   *"
+echo -e "*   is necessary. Do NOT use it to reboot DAQ machines in case of      *"
+echo -e "*   operational problems.                                              *"
+echo -e "*                                                                      *"
+echo -e "************************************************************************"
+
+echo -e "Are you SURE you want to continue? (yes/no) : ";
+read ans
+if [ $ans == "yes" ]; then
+   echo -e "Please input your name: ";
+   read expert_name
+   echo -e "OK, powering down\n";
+else
+   echo -e "Exiting without power down\n";
+   exit 0;
+fi
+}
+
+## MINERvA underground machines 
+minerva_underground_function() {
+echo -e "Powering down following machines: \n${MINERVA_UNDERGROUND[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | mail -s "Powering down MINERvA underground computers" ${EMAIL_EXPERT[@]}
+echo -e "Powering down following machines: \n${MINERVA_UNDERGROUND[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | tee -a $LOGFILE
+for ((i=0; i<${arraylengthMINERVA_UNDERGROUND}; i++))
+do
+echo -e "Shutting down ${MINERVA_UNDERGROUND[i]} in one minute"
+ssh  ${MINERVA_UNDERGROUND[i]} "$COMMAND" &
+#ssh  ${MINERVA_UNDERGROUND[i]} "shutdown -h 1"
+echo -e "Shutdown command sent to ${MINERVA_UNDERGROUND[i]}"
+#echo -e "$(($i+1))"
+done
+timecount_sec
+echo -e "${red}Shutting down all the computers now; goodbye!${normal}"
+}
+
+## MINOS underground machines 
+minos_underground_function() {
+echo -e "Powering down following machines: \n${MINOS_UNDERGROUND[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | mail -s "Powering down MINOS underground computers" ${EMAIL_EXPERT[@]}
+echo -e "Powering down following machines: \n${MINOS_UNDERGROUND[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | tee -a $LOGFILE
+for ((i=0; i<${arraylengthMINOS_UNDERGROUND}; i++))
+do
+echo -e "Shutting down ${MINOS_UNDERGROUND[i]} in one minute"
+ssh  ${MINOS_UNDERGROUND[i]} "$COMMAND" &
+#ssh  ${MINOS_UNDERGROUND[i]} "shutdown -h 1"
+echo -e "Shutdown command sent to ${MINOS_UNDERGROUND[i]}"
+done
+timecount_sec
+echo -e "${red}Shutting down all the computers now; goodbye!${normal}"
+}
+
+## MINOS gateway machines 
+minos_gateway_function() {
+echo -e "Powering down following machines: \n${MINOS_GATEWAY[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | mail -s "Powering down MINOS gateway computers" ${EMAIL_EXPERT[@]}
+echo -e "Powering down following machines: \n${MINOS_GATEWAY[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | tee -a $LOGFILE
+for ((i=0; i<${arraylengthMINOS_GATEWAY}; i++))
+do
+echo -e "Shutting down ${MINOS_GATEWAY[i]} in one minute"
+ssh  ${MINOS_GATEWAY[i]} "$COMMAND" &
+#ssh  ${MINOS_GATEWAY[i]} "shutdown -h 1"
+echo -e "Shutdown command sent to ${MINOS_GATEWAY[i]}"
+done
+timecount_sec
+echo -e "${red}Shutting down all the computers now; goodbye!${normal}"
+}
+
+## MINERvA and MINOS control room machines 
+cr_function() {
+echo -e "Powering down following machines: \n${CR[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | mail -s "Powering down Control Room computers" ${EMAIL_EXPERT[@]}
+echo -e "Powering down following machines: \n${CR[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | tee -a $LOGFILE
+for ((i=0; i<${arraylengthCR}; i++))
+do
+echo -e "Shutting down ${CR[i]} in one minute"
+ssh  ${CR[i]} "$COMMAND" &
+#ssh  ${CR[i]} "shutdown -h 1"
+echo -e "Shutdown command sent to ${CR[i]}"
+done
+timecount_sec
+echo -e "${red}Shutting down all the computers now; goodbye!${normal}"
+}
+
+## MINERvA Lab-F machines 
+labf_function() {
+echo -e "Powering down following machines: \n${LABF[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | mail -s "Powering down Control Room computers" ${EMAIL_EXPERT[@]}
+echo -e "Powering down following machines: \n${LABF[@]} \nusing command $COMMAND \nfrom $CONNECTED \nat `date`\nby $expert_name.\n" | tee -a $LOGFILE
+for ((i=0; i<${arraylengthLABF}; i++))
+do
+echo -e "Shutting down ${LABF[i]} in one minute"
+ssh  ${LABF[i]} "$COMMAND" &
+#ssh  ${LABF[i]} "shutdown -h 1"
+echo -e "Shutdown command sent to ${LABF[i]}"
+done
+timecount_sec
+echo -e "${red}Shutting down all the computers now; goodbye!${normal}"
+}
+
+
+###########################################
+#              Help Function              #
+###########################################
+help_function() {
+clear
+echo -e "---------------------------------------------------------------------------"
+echo -e "|                           Operation Machines                             |"
+echo -e "---------------------------------------------------------------------------"
+echo -e "${underline}How to shutdown MINERvA and MINOS computers?${normal}"
+echo -e "./$(basename $BASH_SOURCE) [option]"
+echo -e ""
+echo -e "${underline}[option]${normal}\t${underline}Function${normal}"
+echo -e "u\t\tShutdown all MINERvA underground machines"
+echo -e "mu\t\tShutdown MINOS underground machines"
+echo -e "mg\t\tShutdown MINOS gateway machines"
+echo -e "cr\t\tShutdown MINERvA and MINOS Control Room machines"
+echo -e "labf\t\tShutdown MINERvA Lab-F machines"
+echo -e "help\t\tget this help message"
+echo -e "---------------------------------------------------------------------------"
+echo -e "Please contact ${underline}$EXPERT${normal} for more details and problems."
+echo -e "---------------------------------------------------------------------------"
+
+}
+
+###########################################
+#          Parameter too execute          #
+###########################################
+case "$1" in
+  "help" | "-help" | "--help" | "h" | "-h" | "usage" | "$nullVariable" )
+    help_function  # calling function help()
+    ;;
+  u)
+    warning_function
+    minerva_underground_function 
+    ;;
+  mu)
+    warning_function
+    minos_underground_function 
+    ;;
+  mg)
+    warning_function
+    minos_gateway_function 
+    ;;
+  cr)
+    warning_function
+    cr_function 
+    ;;
+  labf)
+    warning_function
+    labf_function 
+    ;;
+  *)
+esac
+

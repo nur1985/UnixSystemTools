@@ -1,0 +1,196 @@
+Powering down following machines: 
+root@minos-cr-01.fnal.gov root@minos-cr-02.fnal.gov root@minos-cr-03.fnal.gov root@minos-cr-04.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command ls -ltr; 
+from minerva@minerva-cr-03.fnal.gov 
+at Sat May 13 09:03:25 CDT 2017
+by nur.
+
+Powering down following machines: 
+root@mnvonline04.fnal.gov root@mnvonline05.fnal.gov minerva@mnvonline06.fnal.gov root@mnvonline0.fnal.gov root@mnvonlinemaster.fnal.gov root@mnvonlinelogger4.fnal.gov nearonline@mnvonlinelogger6.fnal.gov 
+using command ls -ltr; 
+from minerva@minerva-cr-03.fnal.gov 
+at Sat May 13 09:04:41 CDT 2017
+by nur.
+
+Powering down following machines: 
+root@minos-gateway00-nd.fnal.gov root@minos-gateway01-nd.fnal.gov 
+using command ls -ltr; 
+from minerva@minerva-cr-03.fnal.gov 
+at Sat May 13 17:07:14 CDT 2017
+by nur.
+
+Powering down following machines: 
+root@mnvonline04.fnal.gov root@mnvonline05.fnal.gov root@mnvonline06.fnal.gov root@mnvonline0.fnal.gov root@mnvonlinemaster.fnal.gov root@mnvonlinelogger4.fnal.gov root@mnvonlinelogger6.fnal.gov 
+using command shutdown -h 1 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 05:43:34 CDT 2017
+by nur.
+
+Powering down following machines: 
+root@minos-cr-01.fnal.gov root@minos-cr-02.fnal.gov root@minos-cr-03.fnal.gov root@minos-cr-04.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 1 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 05:54:00 CDT 2017
+by nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h -t 60 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:20:44 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -ht 60 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:24:46 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h -t 60 time Powering down the machine in 60s. 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:26:52 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 60 time Powering down the machine in 60s. 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:29:34 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s. Please close your session. 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:36:03 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION - 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:48:50 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -c 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:49:15 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION - 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:52:05 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -c 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 10:52:35 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from minerva@minerva-cr-03.fnal.gov 
+at Mon May 15 16:49:11 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@mnvtb03.fnal.gov root@mnvtb04.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from minerva@minerva-cr-03.fnal.gov 
+at Fri Sep  8 14:12:23 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@mnvonline04.fnal.gov root@mnvonline05.fnal.gov root@mnvonline06.fnal.gov root@mnvonline0.fnal.gov root@mnvonlinemaster.fnal.gov root@mnvonlinelogger4.fnal.gov root@mnvonlinelogger6.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from minerva@minerva-cr-03.fnal.gov 
+at Fri Sep  8 14:13:58 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from minerva@minerva-cr-03.fnal.gov 
+at Fri Sep  8 14:55:31 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@mnvtb03.fnal.gov root@mnvtb04.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from minerva@minerva-cr-03.fnal.gov 
+at Wed Sep 13 22:53:02 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@minos-cr-03.fnal.gov root@minos-evd.fnal.gov root@minerva-cr-01.fnal.gov root@minerva-cr-02.fnal.gov root@minerva-cr-03.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from minerva@minerva-cr-03.fnal.gov 
+at Wed Sep 13 23:00:25 CDT 2017
+by Nur.
+
+Powering down following machines: 
+root@mnvonline04.fnal.gov root@mnvonline05.fnal.gov root@mnvonline06.fnal.gov root@mnvonline0.fnal.gov root@mnvonlinemaster.fnal.gov root@mnvonlinelogger4.fnal.gov root@mnvonlinelogger6.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Thu Aug  2 11:12:45 CDT 2018
+by Nur.
+
+Powering down following machines: 
+root@mnvonline04.fnal.gov root@mnvonline05.fnal.gov root@mnvonline06.fnal.gov root@mnvonline0.fnal.gov root@mnvonlinemaster.fnal.gov root@mnvonlinelogger4.fnal.gov root@mnvonlinelogger6.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Fri Aug 17 09:15:18 CDT 2018
+by Nur.
+
+Powering down following machines: 
+root@mnvonline04.fnal.gov root@mnvonline05.fnal.gov root@mnvonline06.fnal.gov root@mnvonline0.fnal.gov root@mnvonlinemaster.fnal.gov root@mnvonlinelogger4.fnal.gov root@mnvonlinelogger6.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Fri Aug 24 09:44:17 CDT 2018
+by Nur.
+
+Powering down following machines: 
+root@mnvonline04.fnal.gov root@mnvonline05.fnal.gov root@mnvonline06.fnal.gov root@mnvonline0.fnal.gov root@mnvonlinemaster.fnal.gov root@mnvonlinelogger4.fnal.gov root@mnvonlinelogger6.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Fri Sep  7 10:11:43 CDT 2018
+by Nur.
+
+Powering down following machines: 
+root@minos-daq20-nd.fnal.gov root@minos-daq22-nd.fnal.gov root@minos-daq24-nd.fnal.gov root@minos-daq08-nd.fnal.gov root@minos-daq09-nd.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Fri Sep  7 10:42:22 CDT 2018
+by Nur.
+
+Powering down following machines: 
+root@minos-daq20-nd.fnal.gov root@minos-daq22-nd.fnal.gov root@minos-daq24-nd.fnal.gov root@minos-daq08-nd.fnal.gov root@minos-daq09-nd.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Fri Sep  7 10:46:28 CDT 2018
+by Nur.
+
+Powering down following machines: 
+root@minos-daq20-nd.fnal.gov root@minos-daq22-nd.fnal.gov root@minos-daq24-nd.fnal.gov root@minos-daq08-nd.fnal.gov root@minos-daq09-nd.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Fri Sep  7 10:48:30 CDT 2018
+by Nur.
+
+Powering down following machines: 
+root@minos-daq26-nd.fnal.gov 
+using command shutdown -h 1 Powering down the machine in 60s, PLEASE CLOSE YOUR SESSION! 
+from root@minerva-cr-03.fnal.gov 
+at Fri Sep  7 10:55:59 CDT 2018
+by Nur.
+
