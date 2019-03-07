@@ -1,0 +1,42 @@
+#!/bin/sh
+#################################################################
+# A shell script to update your software to cvs version
+# Nuruzzaman <nur@fnal.gov>, Date Created: 01/12/2015
+#################################################################
+MINERvA_VNC_SHIFT_SOFTWARE="v1.0"
+LAST_MODIFIED="01/12/2015"
+
+###########################################
+#             Kerberize  User             #
+###########################################
+kerberize(){
+# destroy any previous ticket
+KDESTROY="kdestroy"
+echo -e "$KDESTROY"
+$KDESTROY
+# Kerberize your session
+KERBERIZE_SESSION="source $HOME/mnvdaqrunscripts/Kerberize"
+echo -e "$KERBERIZE_SESSION"
+$KERBERIZE_SESSION
+sleep 1
+}
+
+###########################################
+#               CVS Update                #
+###########################################
+cvs_update(){
+CVS_UPDATE="cvs update -C"
+CVS_STATUS="cvs status"
+CVS_DIFF="cvs diff"
+echo -e "$CVS_STATUS"
+$CVS_STATUS
+echo "$CVS_UPDATE"
+$CVS_UPDATE
+echo -e "$CVS_DIFF"
+$CVS_DIFF
+}
+
+#kerberize
+cvs_update
+echo -e "Your software is updated to most recent CVS version"
+
