@@ -1,0 +1,86 @@
+#!/bin/bash
+#################################################################
+# A shell script to check all the important running processes
+# to run the shift
+# Nuruzzaman <nur@fnal.gov>, Date Created: 02/04/2016
+# 
+#################################################################
+MINERvA_VNC_SHIFT_SOFTWARE="v1.0"
+LAST_MODIFIED="10/04/2016"
+
+declare -a EMAIL_EXPERT=(	"minerva-ops-logs@fnal.gov"
+#                                "hbudd@fnal.gov"
+				"nur@fnal.gov"
+#				"7862166981@txt.att.net" # Nur
+#				"6309960090@usamobility.net" # Run Coordinator Pager
+#				"6309960091@usamobility.net" # DAQ Expert Pager
+#				"6309960092@usamobility.net" # Expert Shifter Pager
+)
+
+declare -a PROCESS_ARRAY=(	"[R]unControl.py"
+				"[r]ms-20150213"
+				"bin/[g]mbrowser"
+				"[v]eto.hvc"
+				"[screenshot]_web_rc.pl"
+				"[screenshot]_web_minos.pl"
+				"[screenshot]_web_gmbrowser.pl"
+				"[screenshot]_web_veto.pl"
+				"[automated]_shift_summary_polts.pl"
+				"[automated]_daq_livetime_polts.pl"
+				"[automated]_live_daq_livetime_polts.pl"
+				"[automated]_minos_minerva_daq_time_difference_plot.pl"
+				"[automated]_POT_polts.pl"
+				"[minerva]-cr-03.fnal.gov:1"
+				"[minerva]-cr-03.fnal.gov:2"
+				"[minerva]-cr-03.fnal.gov:3"
+				"[minerva]-cr-03.fnal.gov:4"
+				"[minerva]-cr-03.fnal.gov:5"
+				"[minerva]-cr-03.fnal.gov:6"
+#				"[dbsync]_for_website.pl"
+)
+declare -a PROCESS_NAME_ARRAY=(	"MINERvA Run Control"
+				"MINOS Run Control"
+				"GMBrowser"
+				"VETO High Voltage Monitor"
+				"Screenshot script of MINERvA Run Control"
+				"Screenshot script of MINOS Run Control"
+				"Screenshot script of GMBrowser"
+				"Screenshot script of VETO"
+				"Script for Shift Summary Polts"
+				"Script for Monthly DAQ Clock Livetime Polt"
+				"Script for Live DAQ Clock Livetime Polt"
+				"Script for Live MINOS MINERvA DAQ Clock Time Difference Polt"
+				"POT Calculation from IFBeam DB"
+				"VNC Server for Run Control"
+				"VNC Server for MINOS"
+				"VNC Server for GMBrowser"
+				"VNC Server for VETO"
+				"VNC Server for Common"
+				"VNC Server for FNAL"
+#				"E-checklist script"
+)
+arraylength=${#PROCESS_ARRAY[@]}
+
+SOURCE_DIR="/home/minerva/cmtuser/Minerva_v10r9p1/Tools/ControlRoomTools/SmartShift"
+BASHRC="source /home/minerva/.bashrc"
+START_RC="source /home/minerva/mnvdaqrunscripts/uroc_runcontrol.sh"
+START_GMBROWSER="source /home/minerva/bin/GMBrowser"
+START_MINOS="/home/minerva/rms-20150213/rms/rms service rc near"
+START_VETO="source /home/minerva/bin/RunVetoHVMonitor"
+LOGFILE="$SOURCE_DIR/logs/check_process.log"
+
+process_function() {
+	for ((p=0; p<${arraylength}; p++)); do
+		if ps aux | grep ${PROCESS_ARRAY[p]} > /dev/null
+		then
+			echo "${PROCESS_NAME_ARRAY[p]} is running, everything is fine."
+		else
+			echo "${PROCESS_NAME_ARRAY[p]} is not running! Stopped at `date`." | tee -a $LOGFILE
+			echo "${PROCESS_NAME_ARRAY[p]} is not running! Stopped at `date`." | mail -s "${PROCESS_NAME_ARRAY[p]} is down" ${EMAIL_EXPERT[@]}
+		fi
+	done
+}
+
+
+process_function
+
