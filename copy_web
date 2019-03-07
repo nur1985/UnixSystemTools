@@ -1,0 +1,53 @@
+#!/bin/bash
+#################################################################
+# A shell script to copy websites and info. to the webserver
+# Nuruzzaman <nur@fnal.gov>, Date Created: 12/12/2015
+# 
+#################################################################
+MINERvA_VNC_SHIFT_SOFTWARE="v1.0"
+LAST_MODIFIED="05/09/2016"
+
+SOURCE_DIR="/home/minerva/cmtuser/Minerva_v10r9p1/Tools/ControlRoomTools/SmartShift"
+IMAGE_SOURCE_DIR="$SOURCE_DIR/images"
+#COPY_DIR="mnvonline@minervagpvm02.fnal.gov:/web/sites/minerva.fnal.gov/htdocs/shift"
+COPY_DIR="/web/sites/minerva.fnal.gov/htdocs/shift"
+IMAGE_COPY_DIR="$COPY_DIR/images"
+
+INDEX_FILE="$SOURCE_DIR/index.html"
+RC_FILE="$SOURCE_DIR/rc.html"
+MINOS_FILE="$SOURCE_DIR/minos.html"
+GMBROWSER_FILE="$SOURCE_DIR/gmbrowser.html"
+OLD_GMBROWSER_FILE="$SOURCE_DIR/gmbrowser_old.html"
+VETO_FILE="$SOURCE_DIR/veto.html"
+LIVE_FILE="$SOURCE_DIR/live.html"
+SHIFT_SUMMARY_FILE="$SOURCE_DIR/shift_summary.html"
+LINKS_FILE="$SOURCE_DIR/links.html"
+
+MISC_HTML_FILE="$SOURCE_DIR/web_status_A9_echecklist_minos_rocmuon.html"
+MISC_HTML_FILE2="$SOURCE_DIR/web_status_rockmuon.html"
+
+SHIFTINFO_FILE="$IMAGE_SOURCE_DIR/shift_info.html"
+
+nullVariable=""
+
+COPY_HTML="cp $INDEX_FILE $RC_FILE $MINOS_FILE $GMBROWSER_FILE $OLD_GMBROWSER_FILE $VETO_FILE $LIVE_FILE $SHIFT_SUMMARY_FILE $LINKS_FILE $MISC_HTML_FILE $MISC_HTML_FILE2 $COPY_DIR"
+COPY_TEXT="cp $SHIFTINFO_FILE $IMAGE_COPY_DIR"
+
+
+# check cvs status
+#CVS_DIFF="cvs diff -D now index.html rc.html minos.html gmbrowser.html veto.html web_status_A9_echecklist_minos_rocmuon.html images/shift_info.html"
+#echo -e "$CVS_DIFF"
+#$CVS_DIFF
+
+#if [ -n "$CVS_DIFF" ]; then
+#if [[ "$CVS_DIFF" = "$nullVariable" ]]; then
+#    	echo -e "Didn't copy the files. Your files are not submitted to CVS."
+#    	echo -e "Please submit your changes to CVS and then run the script again."
+#else
+$COPY_HTML
+$COPY_TEXT
+echo -e "File Copied to $COPY_DIR from $SOURCE_DIR"
+#fi
+
+
+
